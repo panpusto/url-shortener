@@ -1,0 +1,5 @@
+**/.git
+dev.Dockerfile
+dev.Dockerfile.dockerignore
+Dockerfile
+Dockerfile.dockerignore

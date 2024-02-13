@@ -1,0 +1,5 @@
+.vscode
+.DS-Store/
+.idea/
+.docker-compose.yml
+.venv

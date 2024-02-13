@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+
+  backend:
+    image: dev-short-url-image
+    container_name: dev-short-url-api-backend
+    restart: always
+    build:
+      context: ./backend
+      dockerfile: ./dev.Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - type: bind
+        source: .
+        target: /code
