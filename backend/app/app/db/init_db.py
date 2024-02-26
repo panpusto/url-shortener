@@ -3,5 +3,6 @@ from sqlmodel import SQLModel
 from .engine import engine
 
 
-def create_db():
+def init_db():
     SQLModel.metadata.create_all(engine)
+    print(SQLModel.metadata.tables)
