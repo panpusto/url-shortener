@@ -18,7 +18,7 @@ class GlobalConfig(BaseConfig):
     postgres_server: str = os.environ.get("POSTGRES_SERVER")
     postgres_port: int = int(os.environ.get("POSTGRES_PORT"))
     postgres_db: str = os.environ.get("POSTGRES_DB")
-    db_echo_log: bool = True
+    db_echo_log: bool = True if debug == "True" else False
     
     @property
     def sync_database_url(self) -> str:

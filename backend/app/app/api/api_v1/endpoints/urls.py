@@ -42,7 +42,7 @@ def read_url(
     name="administration info",
     response_model=URLRead
 )
-def get_url_info(
+def read_url_info(
     secret_key: str, request: Request, db: SessionDep
 ):
     if db_url := get_db_url_by_secret_key(db=db, secret_key=secret_key):

@@ -1,5 +1,5 @@
 from fastapi.datastructures import URL as fa_URL
-from sqlmodel import Session
+from sqlmodel import Session, select
 
 from app.models import URL, URLCreate, URLRead
 from app.utils.keygen import create_random_key, create_unique_random_key
@@ -7,7 +7,7 @@ from app.core.config import settings
 from app.api.api_v1.endpoints import urls
 
 
-def create_db_url(db: Session, url: URLCreate):
+def create_db_url(db: Session, url: URLCreate) -> URL:
     key = create_unique_random_key(db)
     secret_key = f"{key}_{create_random_key(length=8)}"
     db_url = URL(
@@ -21,17 +21,13 @@ def create_db_url(db: Session, url: URLCreate):
 
 def get_db_url_by_key(db: Session, url_key: str) -> URL:
     return (
-        db.query(URL)
-        .filter(URL.key == url_key, URL.is_active)
-        .first()
+        db.exec(select(URL).where(URL.key == url_key).where(URL.is_active)).first()
     )
 
 
 def get_db_url_by_secret_key(db: Session, secret_key: str) -> URL:
     return (
-        db.query(URL)
-        .filter(URL.secret_key == secret_key, URL.is_active)
-        .first()
+        db.exec(select(URL).where(URL.secret_key == secret_key).where(URL.is_active)).first()
     )
 
 

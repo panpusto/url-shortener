@@ -10,7 +10,7 @@ services:
       context: ./backend
       dockerfile: ./dev.Dockerfile
     ports:
-      - 8000:8000
+      - "8000:8000"
     volumes:
       - type: bind
         source: .
