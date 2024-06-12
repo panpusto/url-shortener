@@ -2,3 +2,4 @@
 .gitignore
 .DS-Store/
 .idea/
+.pytest_cache/
